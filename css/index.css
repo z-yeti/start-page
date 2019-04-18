@@ -58,6 +58,8 @@ body {
 }
 .bookmarks > div h2 {
   text-align: center;
+  text-transform: uppercase;
+  font-weight: 400;
 }
 .bookmarks > div > div {
   display: flex;
@@ -67,6 +69,7 @@ body {
 .bookmarks > div > div a {
   text-decoration: none;
   color: #dbdfe1;
+  margin: 5px 0;
 }
 .bookmarks > div > div a:hover {
   text-decoration: underline;
