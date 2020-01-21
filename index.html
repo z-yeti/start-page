@@ -31,26 +31,24 @@
 
     <div class="bookmarks">
       <div>
-        <h2>Daily</h2>
+        <h2>Stuff</h2>
         <div>
           <a href="https://yeti-hass.duckdns.org" target="_blank"
             >HomeAssistant</a
           >
           <a href="https://reddit.com/r/all" target="_blank">/r/all</a>
-          <a href="https://reddit.com/r/iosthemes" target="_blank"
-            >/r/iOSThemes</a
-          >
         </div>
       </div>
       <div>
-        <h2>Dev</h2>
+        <h2>Development</h2>
         <div>
           <a href="https://github.com/" target="_blank">Github</a>
-          <a href="https://partners.shopify.com/" target="_blank"
-            >Shopify Partners</a
-          >
+          <a href="https://gitlab.com/dutchbros" target="_blank">GitLab</a>
           <a href="https://hotel.iwebfusion.net:2083/" target="_blank"
             >AOTY Server</a
+          >
+          <a href="https://dev.portal.dutchbros.com" target="_blank"
+            >DB Portal (DEV)</a
           >
         </div>
       </div>
@@ -63,15 +61,11 @@
           <a href="https://secretserver.dutchbros.com" target="_blank"
             >Secret Server</a
           >
-          <a
-            href="https://docs.google.com/a/dutchbros.com/forms/d/e/1FAIpQLScqS5jzZrJGgARMoM_RoBFLEEOYbIJNiSxMdb6kYNShe4jbzg/viewform"
-            target="_blank"
-            >Check In</a
-          >
+          <a href="https://portal.dutchbros.com" target="_blank">DB Portal</a>
         </div>
       </div>
       <div>
-        <h2>Dutch Site</h2>
+        <h2>Dutch</h2>
         <div>
           <a href="https://dutchbros.com/admin" target="_blank">Website CMS</a>
           <a href="https://70.33.234.237:2083/" target="_blank">CA Server</a>
@@ -84,10 +78,8 @@
         <h2>LocalHost</h2>
         <div>
           <a href="http://localhost:3000" target="_blank">3000</a>
+          <a href="http://localhost:5000" target="_blank">5000</a>
           <a href="http://localhost:8000" target="_blank">8000</a>
-          <a href="http://localhost:8000___graphql" target="_blank"
-            >8000-GraphQL</a
-          >
           <a href="http://localhost:8888" target="_blank">8888</a>
         </div>
       </div>
@@ -101,65 +93,65 @@
     let date = new Date(),
       min = date.getMinutes(),
       sec = date.getSeconds(),
-      hour = date.getHours();
+      hour = date.getHours()
     return (
-      '' +
-      (hour < 10 ? '0' + hour : hour) +
-      ':' +
-      (min < 10 ? '0' + min : min) +
-      ':' +
-      (sec < 10 ? '0' + sec : sec)
-    );
+      "" +
+      (hour < 10 ? "0" + hour : hour) +
+      ":" +
+      (min < 10 ? "0" + min : min) +
+      ":" +
+      (sec < 10 ? "0" + sec : sec)
+    )
   }
 
   // Search on enter key event
   function search(e) {
     if (e.keyCode == 13) {
-      var val = document.getElementById('search-field').value;
-      window.open('https://google.com/search?q=' + val);
+      var val = document.getElementById("search-field").value
+      window.open("https://google.com/search?q=" + val)
     }
   }
 
-  document.addEventListener('keydown', event => {
+  document.addEventListener("keydown", event => {
     if (event.keyCode == 16) {
       // Left Shift code to open search
-      document.getElementById('search').style.display = 'flex';
-      document.getElementById('search-field').focus();
-      document.getElementById('search-field').value = '';
+      document.getElementById("search").style.display = "flex"
+      document.getElementById("search-field").focus()
+      document.getElementById("search-field").value = ""
     } else if (event.keyCode == 27) {
       // Esc to close search
-      document.getElementById('search-field').value = '';
-      document.getElementById('search-field').blur();
-      document.getElementById('search').style.display = 'none';
+      document.getElementById("search-field").value = ""
+      document.getElementById("search-field").blur()
+      document.getElementById("search").style.display = "none"
     }
-  });
+  })
 
   window.onload = () => {
-    let xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest()
     // Request to open weather map
     xhr.open(
-      'GET',
-      'https://api.openweathermap.org/data/2.5/weather?id=5729080&units=imperial&appid=e5b292ae2f9dae5f29e11499c2d82ece'
-    );
+      "GET",
+      "https://api.openweathermap.org/data/2.5/weather?id=5729080&units=imperial&appid=e5b292ae2f9dae5f29e11499c2d82ece"
+    )
     xhr.onload = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          let json = JSON.parse(xhr.responseText);
-          document.getElementById('temp').innerHTML =
-            json.main.temp.toFixed(0) + ' F';
-          document.getElementById('weather-description').innerHTML =
-            json.weather[0].description;
+          let json = JSON.parse(xhr.responseText)
+          document.getElementById("temp").innerHTML =
+            json.main.temp.toFixed(0) + " F"
+          document.getElementById("weather-description").innerHTML =
+            json.weather[0].description
         } else {
-          console.log('error msg: ' + xhr.status);
+          console.log("error msg: " + xhr.status)
         }
       }
-    };
-    xhr.send();
+    }
+    xhr.send()
     // Set up the clock
-    document.getElementById('clock').innerHTML = getTime();
+    document.getElementById("clock").innerHTML = getTime()
     // Set clock interval to tick clock
     setInterval(() => {
-      document.getElementById('clock').innerHTML = getTime();
-    }, 100);
-  };
+      document.getElementById("clock").innerHTML = getTime()
+    }, 100)
+  }
 </script>
