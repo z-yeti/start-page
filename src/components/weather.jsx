@@ -1,4 +1,11 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+
+const WeatherText = styled.p`
+  text-align: center;
+  font-size: 1.75rem;
+  margin: .5rem;
+`;
 
 function Weather() {
   const [weatherDesc, setWeatherDesc] = useState(null);
@@ -31,11 +38,11 @@ function Weather() {
   return (
     <div>
     {weatherDesc && temp ? (
-    <h1>
+    <WeatherText>
       {weatherDesc} and {temp}
-    </h1>
+    </WeatherText>
     ) : (
-      <h1>Fetching Weather...</h1>
+      <WeatherText>Fetching Weather...</WeatherText>
     )}
     </div>
   );

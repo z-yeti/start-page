@@ -1,4 +1,12 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+
+const DateTimeText = styled.p`
+  text-align: center;
+  font-size: 1.75rem;
+  margin: .5rem;
+`;
+
 function DateTime() {
   const [time, setTime] = useState(null);
   const [date, setDate] = useState(null);
@@ -45,12 +53,12 @@ function DateTime() {
 
   return (
     <div>
-      <h1>{date}</h1>
       {time ? (
-        <h1>{time}</h1>
+        <DateTimeText>{time}</DateTimeText>
       ) : (
-        <h1>Calculating time...</h1>
+        <DateTimeText>Calculating time...</DateTimeText>
       )}
+      <DateTimeText>{date}</DateTimeText>
     </div>
   );
 }
