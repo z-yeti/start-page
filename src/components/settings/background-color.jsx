@@ -3,7 +3,7 @@ import { HexColorPicker, HexColorInput } from "react-colorful";
 function BackgroundColor(props) {
   const { backgroundColor, setBackgroundColor } = props;
   const setBackgroundInLocalStorage = (e) => {
-    setBackgroundColor(e)
+    setBackgroundColor(e);
     localStorage.setItem("start-page-background", e);
   };
   return (

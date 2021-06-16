@@ -4,7 +4,10 @@ import styled from "styled-components";
 const WeatherText = styled.p`
   text-align: center;
   font-size: 1.75rem;
-  margin: .5rem;
+  margin: 0.5rem;
+  & span{
+    text-transform: capitalize;
+  }
 `;
 
 function Weather() {
@@ -22,7 +25,7 @@ function Weather() {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           let json = JSON.parse(xhr.responseText);
-          setTemp(json.main.temp.toFixed(0) + " F");
+          setTemp(json.main.temp.toFixed(0) + "°F");
           setWeatherDesc(json.weather[0].description);
         } else {
           console.log("error msg: " + xhr.status);
@@ -30,24 +33,22 @@ function Weather() {
       }
     };
     xhr.send();
-  }
+  };
 
   useEffect(() => {
     getWeather();
-  })
+  });
   return (
-    <div>
-    {weatherDesc && temp ? (
-    <WeatherText>
-      {weatherDesc} and {temp}
-    </WeatherText>
-    ) : (
-      <WeatherText>Fetching Weather...</WeatherText>
-    )}
-    </div>
+    <>
+      {weatherDesc && temp ? (
+        <WeatherText>
+          <span>{weatherDesc}</span> and {temp}
+        </WeatherText>
+      ) : (
+        <WeatherText>Fetching Weather...</WeatherText>
+      )}
+    </>
   );
 }
 
 export default Weather;
-
-

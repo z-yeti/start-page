@@ -18,14 +18,14 @@ const SettingsButton = styled.button`
 `;
 
 const SettingsContainer = styled.div`
-
+  max-width: 880px;
+  margin: 0 auto;
 `;
 
 const SettingsContainerColors = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 1rem auto;
-  max-width: 880px;
   & label {
     display: block;
     width: 100%;
@@ -36,9 +36,6 @@ const SettingsContainerColors = styled.div`
     width: calc(200px - 15px);
     background: none;
     border: 1px solid;
-    border-top-color: currentcolor;
-    border-top-style: solid;
-    border-top-width: 1px;
     border-top: none;
     border-radius: 0 0 3px 3px;
     margin: -5px 0 0;
@@ -57,11 +54,13 @@ function Settings(props) {
     setTextColor,
     linkColor,
     setLinkColor,
+    username,
+    setUsername,
   } = props;
   const [settingsActive, setSettingsActive] = useState(false);
 
   return (
-    <div>
+    <>
       <SettingsButton
         linkColor={linkColor}
         onClick={() => setSettingsActive(!settingsActive)}
@@ -70,6 +69,16 @@ function Settings(props) {
       </SettingsButton>
       {settingsActive ? (
         <SettingsContainer>
+          <div>
+            <label htmlFor="usernameInput">Name: </label>
+            <input
+              type="text"
+              id="usernameInput"
+              placeholder="Name"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
           <SettingsContainerColors textColor={textColor}>
             <BackgroundColor
               backgroundColor={backgroundColor}
@@ -80,7 +89,7 @@ function Settings(props) {
           </SettingsContainerColors>
         </SettingsContainer>
       ) : null}
-    </div>
+    </>
   );
 }
 

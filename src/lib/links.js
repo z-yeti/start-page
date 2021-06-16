@@ -89,8 +89,8 @@ const userLinkObjects = {
     {
       url: "https://old.reddit.com/r/all",
       name: "Reddit",
-    }
+    },
   ],
 };
 
-export default userLinkObjects
+export default userLinkObjects;

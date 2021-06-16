@@ -36,21 +36,29 @@ const SearchInput = styled.input`
 
 function Search(props) {
   const { textColor } = props;
-  const [ searchActive, setSearchActive ] = useState(false);
-  const [ searchText, setSearchText ] = useState("");
+  const [searchActive, setSearchActive] = useState(false);
+  const [searchText, setSearchText] = useState("");
   const handleSearch = () => {
     window.location.href = `https://www.google.com/search?q=${searchText}`;
   };
   return (
-    <div>
+    <>
       {!searchActive ? (
-        <SearchButton onClick={() => {setSearchActive(!searchActive)}}>
-          <FontAwesomeIcon icon={ faSearch } />
+        <SearchButton
+          onClick={() => {
+            setSearchActive(!searchActive);
+          }}
+        >
+          <FontAwesomeIcon icon={faSearch} />
         </SearchButton>
       ) : (
         <div>
-          <SearchButton onClick={() => {setSearchActive(!searchActive)}}>
-            <FontAwesomeIcon icon={ faTimes } />
+          <SearchButton
+            onClick={() => {
+              setSearchActive(!searchActive);
+            }}
+          >
+            <FontAwesomeIcon icon={faTimes} />
           </SearchButton>
           <SearchContainer>
             <SearchLabel htmlFor="searchInput">Search</SearchLabel>
@@ -61,12 +69,12 @@ function Search(props) {
               onChange={(e) => setSearchText(e.target.value)}
               placeholder="What knowledge do you seek young padawan?"
               textColor={textColor}
-              />
+            />
             {searchText && <button onClick={handleSearch}>Search</button>}
           </SearchContainer>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

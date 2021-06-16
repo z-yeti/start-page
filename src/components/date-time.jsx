@@ -4,7 +4,7 @@ import styled from "styled-components";
 const DateTimeText = styled.p`
   text-align: center;
   font-size: 1.75rem;
-  margin: .5rem;
+  margin: 0.5rem;
 `;
 
 function DateTime() {
@@ -52,14 +52,14 @@ function DateTime() {
   });
 
   return (
-    <div>
+    <>
       {time ? (
         <DateTimeText>{time}</DateTimeText>
       ) : (
         <DateTimeText>Calculating time...</DateTimeText>
       )}
       <DateTimeText>{date}</DateTimeText>
-    </div>
+    </>
   );
 }
 

@@ -5,8 +5,15 @@ const WelcomeText = styled.p`
   font-size: 3rem;
 `;
 
-function Welcome() {
-  return <WelcomeText>Welcome Yeti</WelcomeText>;
+function Welcome(props) {
+  const { username } = props;
+  const welcomes = ["Suh", "Hello", "Welcome"];
+  const welcomeText = welcomes[Math.floor(Math.random() * welcomes.length)];
+  return (
+    <WelcomeText>
+      {welcomeText} {username}
+    </WelcomeText>
+  );
 }
 
 export default Welcome;
