@@ -5,6 +5,7 @@ import { faCog } from "@fortawesome/free-solid-svg-icons";
 import BackgroundColor from "./background-color";
 import TextColor from "./text-color";
 import LinkColor from "./link-color";
+import Username from "./username";
 
 const SettingsButton = styled.button`
   position: absolute;
@@ -69,16 +70,7 @@ function Settings(props) {
       </SettingsButton>
       {settingsActive ? (
         <SettingsContainer>
-          <div>
-            <label htmlFor="usernameInput">Name: </label>
-            <input
-              type="text"
-              id="usernameInput"
-              placeholder="Name"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
+          <Username username={username} setUsername={setUsername} />
           <SettingsContainerColors textColor={textColor}>
             <BackgroundColor
               backgroundColor={backgroundColor}
