@@ -67,7 +67,7 @@ function Settings(props) {
       </SettingsButton>
       {settingsActive ? (
         <SettingsContainer>
-          <Username username={username} setUsername={setUsername} />
+          <Username username={username} setUsername={setUsername} textColor={textColor} linkColor={linkColor} />
           <SettingsContainerColors textColor={textColor}>
             <BackgroundColor backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} />
             <TextColor textColor={textColor} setTextColor={setTextColor} />
