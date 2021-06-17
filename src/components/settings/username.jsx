@@ -12,17 +12,19 @@ const InputLabel = styled.label`
   & input {
     height: 2rem;
     border: 0;
-    border-bottom: 1px solid #333333;
+    color: ${(props) => (props.textColor ? props.textColor : '#000')};
+    border-bottom: 1px solid;
     z-index: 2;
     font-size: 16px;
     background: none;
     &:focus {
       outline: none;
     }
+    &:valid + span,
     &:focus + span {
       top: -1.2rem;
       font-size: 0.8rem;
-      color: #1abc9c;
+      color: ${(props) => (props.linkColor ? props.linkColor : '#000')};
     }
     &:focus ~ .bar {
       right: 0;
@@ -49,13 +51,13 @@ const Bar = styled.div`
 `;
 
 function Username(props) {
-  const { username, setUsername } = props;
+  const { username, setUsername, textColor, linkColor } = props;
   const setUsernameInLocalStorage = (e) => {
     setUsername(e.target.value);
     localStorage.setItem('start-page-username', e.target.value);
   };
   return (
-    <InputLabel>
+    <InputLabel textColor={textColor} linkColor={linkColor}>
       <input type='text' value={username} onChange={(e) => setUsernameInLocalStorage(e)} />
       <span>Name</span>
       <Bar />

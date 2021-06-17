@@ -3,5 +3,5 @@ module.exports = {
   jsxSingleQuote: true,
   printWidth: 120,
   singleQuote: true,
-  trailingComma: "es5"
+  trailingComma: 'es5',
 };
