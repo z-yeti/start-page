@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const SearchButton = styled.button`
   position: absolute;
@@ -9,7 +9,7 @@ const SearchButton = styled.button`
   left: 1rem;
   background: rgba(0, 0, 0, 0);
   border: 1px solid;
-  color: ${(props) => (props.linkColor ? props.linkColor : "#2aa198")};
+  color: ${(props) => (props.linkColor ? props.linkColor : '#2aa198')};
   border-radius: 3px;
   padding: 0.3rem 0.5rem;
 `;
@@ -27,7 +27,7 @@ const SearchLabel = styled.label`
 const SearchInput = styled.input`
   margin: 0.5em auto;
   width: 100%;
-  color: ${(props) => (props.textColor ? props.textColor : "#93a1a1")};
+  color: ${(props) => (props.textColor ? props.textColor : '#93a1a1')};
   background: none;
   border: none;
   border-bottom: 1px solid;
@@ -37,7 +37,7 @@ const SearchInput = styled.input`
 function Search(props) {
   const { textColor } = props;
   const [searchActive, setSearchActive] = useState(false);
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState('');
   const handleSearch = () => {
     window.location.href = `https://www.google.com/search?q=${searchText}`;
   };
@@ -61,13 +61,13 @@ function Search(props) {
             <FontAwesomeIcon icon={faTimes} />
           </SearchButton>
           <SearchContainer>
-            <SearchLabel htmlFor="searchInput">Search</SearchLabel>
+            <SearchLabel htmlFor='searchInput'>Search</SearchLabel>
             <SearchInput
-              type="text"
-              id="searchInput"
+              type='text'
+              id='searchInput'
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              placeholder="What knowledge do you seek young padawan?"
+              placeholder='What knowledge do you seek young padawan?'
               textColor={textColor}
             />
             {searchText && <button onClick={handleSearch}>Search</button>}

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const WelcomeText = styled.p`
   text-align: center;
@@ -7,7 +7,7 @@ const WelcomeText = styled.p`
 
 function Welcome(props) {
   const { username } = props;
-  const welcomes = ["Suh", "Hello", "Welcome"];
+  const welcomes = ['Suh', 'Hello', 'Welcome'];
   const welcomeText = welcomes[Math.floor(Math.random() * welcomes.length)];
   return (
     <WelcomeText>

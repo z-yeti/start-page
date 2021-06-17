@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog } from "@fortawesome/free-solid-svg-icons";
-import BackgroundColor from "./background-color";
-import TextColor from "./text-color";
-import LinkColor from "./link-color";
-import Username from "./username";
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog, faTimes } from '@fortawesome/free-solid-svg-icons';
+import BackgroundColor from './background-color';
+import TextColor from './text-color';
+import LinkColor from './link-color';
+import Username from './username';
 
 const SettingsButton = styled.button`
   position: absolute;
@@ -13,7 +12,7 @@ const SettingsButton = styled.button`
   right: 1rem;
   background: rgba(0, 0, 0, 0);
   border: 1px solid;
-  color: ${(props) => (props.linkColor ? props.linkColor : "#2aa198")};
+  color: ${(props) => (props.linkColor ? props.linkColor : '#2aa198')};
   border-radius: 3px;
   padding: 0.3rem 0.5rem;
 `;
@@ -42,13 +41,15 @@ const SettingsContainerColors = styled.div`
     margin: -5px 0 0;
     display: block;
     padding: 10px 6px 6px;
-    color: ${(props) => (props.textColor ? props.textColor : "#93a1a1")};
+    color: ${(props) => (props.textColor ? props.textColor : '#93a1a1')};
     text-align: center;
   }
 `;
 
 function Settings(props) {
   const {
+    settingsActive,
+    setSettingsActive,
     backgroundColor,
     setBackgroundColor,
     textColor,
@@ -58,24 +59,17 @@ function Settings(props) {
     username,
     setUsername,
   } = props;
-  const [settingsActive, setSettingsActive] = useState(false);
 
   return (
     <>
-      <SettingsButton
-        linkColor={linkColor}
-        onClick={() => setSettingsActive(!settingsActive)}
-      >
-        <FontAwesomeIcon icon={faCog} />
+      <SettingsButton linkColor={linkColor} onClick={() => setSettingsActive(!settingsActive)}>
+        {settingsActive ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faCog} />}
       </SettingsButton>
       {settingsActive ? (
         <SettingsContainer>
           <Username username={username} setUsername={setUsername} />
           <SettingsContainerColors textColor={textColor}>
-            <BackgroundColor
-              backgroundColor={backgroundColor}
-              setBackgroundColor={setBackgroundColor}
-            />
+            <BackgroundColor backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} />
             <TextColor textColor={textColor} setTextColor={setTextColor} />
             <LinkColor linkColor={linkColor} setLinkColor={setLinkColor} />
           </SettingsContainerColors>

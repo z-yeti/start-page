@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import Settings from "./components/settings/index";
-import Search from "./components/search";
-import Welcome from "./components/welcome";
-import DateTime from "./components/date-time";
-import Weather from "./components/weather";
-import Links from "./components/links";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import Settings from './components/settings/index';
+import Search from './components/search';
+import Welcome from './components/welcome';
+import DateTime from './components/date-time';
+import Weather from './components/weather';
+import Links from './components/links';
 
 const BaseContainer = styled.div`
   height: 100%;
@@ -14,16 +14,17 @@ const BaseContainer = styled.div`
 `;
 
 function App() {
-  const [backgroundColor, setBackgroundColor] = useState("#073642");
-  const [textColor, setTextColor] = useState("#93a1a1");
-  const [linkColor, setLinkColor] = useState("#2aa198");
-  const [username, setUsername] = useState("");
+  const [backgroundColor, setBackgroundColor] = useState('#073642');
+  const [textColor, setTextColor] = useState('#93a1a1');
+  const [linkColor, setLinkColor] = useState('#2aa198');
+  const [username, setUsername] = useState('');
+  const [settingsActive, setSettingsActive] = useState(false);
 
   useEffect(() => {
-    const storedBackground = localStorage.getItem("start-page-background");
-    const storedTextColor = localStorage.getItem("start-page-text-color");
-    const storedLinkColor = localStorage.getItem("start-page-link-color");
-    const storedUsername = localStorage.getItem("start-page-username");
+    const storedBackground = localStorage.getItem('start-page-background');
+    const storedTextColor = localStorage.getItem('start-page-text-color');
+    const storedLinkColor = localStorage.getItem('start-page-link-color');
+    const storedUsername = localStorage.getItem('start-page-username');
 
     if (storedBackground) {
       setBackgroundColor(storedBackground);
@@ -47,6 +48,8 @@ function App() {
       }}
     >
       <Settings
+        settingsActive={settingsActive}
+        setSettingsActive={setSettingsActive}
         backgroundColor={backgroundColor}
         setBackgroundColor={setBackgroundColor}
         textColor={textColor}
@@ -56,11 +59,15 @@ function App() {
         username={username}
         setUsername={setUsername}
       />
-      <Search textColor={textColor} />
-      <Welcome username={username} />
-      <DateTime />
-      <Weather />
-      <Links linkColor={linkColor} backgroundColor={backgroundColor} />
+      {!settingsActive && (
+        <>
+          <Search textColor={textColor} />
+          <Welcome username={username} />
+          <DateTime />
+          <Weather />
+          <Links linkColor={linkColor} backgroundColor={backgroundColor} />
+        </>
+      )}
     </BaseContainer>
   );
 }

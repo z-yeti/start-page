@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const DateTimeText = styled.p`
   text-align: center;
@@ -18,13 +18,13 @@ function DateTime() {
     let mm = today.getMonth() + 1;
     let yyyy = today.getFullYear();
     if (dd < 10) {
-      dd = "0" + dd;
+      dd = '0' + dd;
     }
 
     if (mm < 10) {
-      mm = "0" + mm;
+      mm = '0' + mm;
     }
-    setDate(mm + "-" + dd + "-" + yyyy);
+    setDate(mm + '-' + dd + '-' + yyyy);
   };
 
   const getTime = () => {
@@ -33,12 +33,7 @@ function DateTime() {
       sec = date.getSeconds(),
       hour = date.getHours();
     setTime(
-      "" +
-        (hour < 10 ? "0" + hour : hour) +
-        ":" +
-        (min < 10 ? "0" + min : min) +
-        ":" +
-        (sec < 10 ? "0" + sec : sec)
+      '' + (hour < 10 ? '0' + hour : hour) + ':' + (min < 10 ? '0' + min : min) + ':' + (sec < 10 ? '0' + sec : sec)
     );
   };
 
@@ -53,11 +48,7 @@ function DateTime() {
 
   return (
     <>
-      {time ? (
-        <DateTimeText>{time}</DateTimeText>
-      ) : (
-        <DateTimeText>Calculating time...</DateTimeText>
-      )}
+      {time ? <DateTimeText>{time}</DateTimeText> : <DateTimeText>Calculating time...</DateTimeText>}
       <DateTimeText>{date}</DateTimeText>
     </>
   );

@@ -1,14 +1,19 @@
-import { HexColorPicker, HexColorInput } from "react-colorful";
+import styled from 'styled-components';
+import { HexColorPicker, HexColorInput } from 'react-colorful';
+
+const LinkLabel = styled.label`
+  color: ${(props) => (props.linkColor ? props.linkColor : '#2aa198')};
+`;
 
 function LinkColor(props) {
   const { linkColor, setLinkColor } = props;
   const setLinkColorInLocalStorage = (e) => {
     setLinkColor(e);
-    localStorage.setItem("start-page-text-color", e);
+    localStorage.setItem('start-page-text-color', e);
   };
   return (
     <div>
-      <label htmlFor="linkColorInput">Link Color</label>
+      <LinkLabel htmlFor='linkColorInput'>Link Color</LinkLabel>
       <HexColorPicker
         color={linkColor}
         onChange={(e) => {
@@ -16,7 +21,7 @@ function LinkColor(props) {
         }}
       />
       <HexColorInput
-        id="linkColorInput"
+        id='linkColorInput'
         color={linkColor}
         onChange={(e) => {
           setLinkColorInLocalStorage(e);
