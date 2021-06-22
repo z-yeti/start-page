@@ -1,4 +1,4 @@
-import { FirebaseAuthConsumer } from '@react-firebase/auth';
+import { FirebaseAuthConsumer } from '@react-firebase/auth'
 
 export function AuthLogger() {
   return (
@@ -8,8 +8,8 @@ export function AuthLogger() {
           <pre style={{ height: 300, overflow: 'auto' }}>
             {JSON.stringify({ isSignedIn, user, providerId }, null, 2)}
           </pre>
-        );
+        )
       }}
     </FirebaseAuthConsumer>
-  );
+  )
 }
