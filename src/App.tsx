@@ -16,15 +16,5 @@ export default function App() {
     })
   }, [])
 
-  return (
-    <>
-    {isLoading ? <p>loading</p> : (
-      isUser ? (
-        <PostAuth/>
-      ) : (
-        <PreAuth />
-      )
-    )}
-    </>
-  )
+  return <>{isLoading ? <p>loading</p> : isUser ? <PostAuth /> : <PreAuth />}</>
 }
