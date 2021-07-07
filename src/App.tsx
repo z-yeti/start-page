@@ -1,13 +1,22 @@
 import { useEffect, useState } from 'react'
+import styled from 'styled-components'
 import { auth, database } from './config/firebase'
 import { dutchieLinks, starterLinks } from './lib/links'
 import PreAuth from './containers/PreAuth'
 import PostAuth from './containers/PostAuth'
 
+interface StyleProps {
+  backgroundColor: string
+}
+
+const AppBaseContainer = styled.div<StyleProps>`
+  background-color: ${(p) => p.backgroundColor || '#fff'}; ;
+`
+
 export default function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [user, setUser] = useState<object | null>()
-  const [userData, setUserData] = useState<object | null>()
+  const [user, setUser] = useState<any>()
+  const [userData, setUserData] = useState<any>()
 
   const handlePostAuth = (authUser: any) => {
     if (authUser) {
@@ -73,7 +82,9 @@ export default function App() {
   }, [])
 
   return (
-    <>
+    <AppBaseContainer
+      backgroundColor={userData?.settings.colors.background}
+    >
       {isLoading ? (
         <p>loading</p>
       ) : user ? (
@@ -81,6 +92,6 @@ export default function App() {
       ) : (
         <PreAuth />
       )}
-    </>
+    </AppBaseContainer>
   )
 }
