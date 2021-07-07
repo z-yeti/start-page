@@ -14,7 +14,8 @@ const GlobalStyle = createGlobalStyle<StyleProps>`
   body{
     background-color: ${(p) => p.backgroundColor || '#333'};
     color: ${(p) => p.color || '#eee'};
-    & a {
+    & a,
+    & button {
       color: ${(p) => p.color || '#5ce1e6'};
     }
   }
@@ -28,24 +29,24 @@ export default function App() {
   const handlePostAuth = (authUser: any) => {
     if (authUser) {
       setUser(authUser)
-      getUserData(authUser.uid)
+      getUserData(authUser)
     } else {
       setIsLoading(false)
     }
   }
 
-  const getUserData = (userId: any) => {
+  const getUserData = (authUser: any) => {
     database
       .ref()
       .child('users')
-      .child(userId)
+      .child(authUser.uid)
       .get()
       .then((snapshot) => {
         if (snapshot.exists()) {
           setUserData(snapshot.val())
           setIsLoading(false)
         } else {
-          writeUserData(user)
+          writeUserData(authUser)
           setIsLoading(false)
         }
       })
@@ -54,13 +55,13 @@ export default function App() {
       })
   }
 
-  const writeUserData = (user: any) => {
-    const hasDutchieEmail = user.email.includes('dutchie')
+  const writeUserData = (authUser: any) => {
+    const hasDutchieEmail = authUser.email.includes('dutchie')
 
-    database.ref('users/' + user.uid).set({
-      username: user.displayName,
-      email: user.email,
-      photoUrl: user.photoURL,
+    database.ref('users/' + authUser.uid).set({
+      username: authUser.displayName,
+      email: authUser.email,
+      photoUrl: authUser.photoURL,
       isDutchie: hasDutchieEmail ? true : false,
       settings: {
         nickname: '',
@@ -74,11 +75,13 @@ export default function App() {
             },
         colors: {
           background: '#333',
-          links: '#ccc',
+          links: '#5ce1e6',
           text: '#eee',
         },
       },
     })
+
+    getUserData(authUser)
   }
 
   useEffect(() => {

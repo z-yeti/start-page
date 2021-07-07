@@ -1,4 +1,5 @@
 import { auth } from '../config/firebase'
+import Button from './Button'
 
 export default function SignOut() {
   const signOut = () => {
@@ -6,5 +7,5 @@ export default function SignOut() {
     window.location.reload()
   }
 
-  return <button onClick={() => signOut()}>Sign Out</button>
+  return <Button onClick={() => signOut()} text='Sign Out' />
 }

@@ -1,4 +1,5 @@
 import { auth, Providers } from '../config/firebase'
+import Button from './Button'
 
 type SignInProps = {
   setIsLoading?: any
@@ -15,12 +16,14 @@ export default function SignIn({ setIsLoading }: SignInProps) {
 
   return (
     <>
-      <button onClick={() => handleSignInClick(Providers.google)}>
-        Sign in with Google
-      </button>
-      <button onClick={() => handleSignInClick(Providers.github)}>
-        Sign in with GitHub
-      </button>
+      <Button
+        onClick={() => handleSignInClick(Providers.google)}
+        text='Sign in with Google'
+      />
+      <Button
+        onClick={() => handleSignInClick(Providers.github)}
+        text='Sign in with GitHub'
+      />
     </>
   )
 }
