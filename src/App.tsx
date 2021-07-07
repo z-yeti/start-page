@@ -1,25 +1,9 @@
 import { useEffect, useState } from 'react'
-import { createGlobalStyle } from 'styled-components'
+import { GlobalStyle } from './styles/global'
 import { auth, database } from './config/firebase'
 import { dutchieLinks, starterLinks } from './lib/links'
 import PreAuth from './containers/PreAuth'
 import PostAuth from './containers/PostAuth'
-
-interface StyleProps {
-  backgroundColor: string
-  color: string
-}
-
-const GlobalStyle = createGlobalStyle<StyleProps>`
-  body{
-    background-color: ${(p) => p.backgroundColor || '#333'};
-    color: ${(p) => p.color || '#eee'};
-    & a,
-    & button {
-      color: ${(p) => p.color || '#5ce1e6'};
-    }
-  }
-`
 
 export default function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true)
@@ -96,8 +80,9 @@ export default function App() {
       <GlobalStyle
         backgroundColor={userData?.settings.colors.background}
         color={userData?.settings.colors.text}
+        links={userData?.settings.colors.links}
       />
-      <div>
+      <>
         {isLoading ? (
           <p>loading</p>
         ) : auth.currentUser ? (
@@ -109,7 +94,7 @@ export default function App() {
         ) : (
           <PreAuth setIsLoading={setIsLoading} />
         )}
-      </div>
+      </>
     </>
   )
 }
