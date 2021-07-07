@@ -82,12 +82,10 @@ export default function App() {
   }, [])
 
   return (
-    <AppBaseContainer
-      backgroundColor={userData?.settings.colors.background}
-    >
+    <AppBaseContainer backgroundColor={userData?.settings.colors.background}>
       {isLoading ? (
         <p>loading</p>
-      ) : user ? (
+      ) : auth.currentUser ? (
         <PostAuth user={user} userData={userData} />
       ) : (
         <PreAuth />
