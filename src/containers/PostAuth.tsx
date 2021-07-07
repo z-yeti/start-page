@@ -1,16 +1,21 @@
+import { useEffect } from 'react'
 import SignOut from '../components/SignOut'
+import Welcome from '../components/Welcome'
 
 type AuthProps = {
   user: any
   userData: any
+  setIsLoading: any
 }
 
-export default function PostAuth({ user, userData }: AuthProps) {
-  console.log(user)
-  console.log(userData)
+export default function PostAuth({ user, userData, setIsLoading }: AuthProps) {
+  useEffect(() => {
+    if (user && userData) setIsLoading(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return (
     <>
-      <h1>Welcome, {userData?.username} </h1>
+      <Welcome userData={userData} />
       <SignOut />
     </>
   )

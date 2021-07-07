@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import { auth, database } from './config/firebase'
 import { dutchieLinks, starterLinks } from './lib/links'
 import PreAuth from './containers/PreAuth'
@@ -7,10 +7,17 @@ import PostAuth from './containers/PostAuth'
 
 interface StyleProps {
   backgroundColor: string
+  color: string
 }
 
-const AppBaseContainer = styled.div<StyleProps>`
-  background-color: ${(p) => p.backgroundColor || '#fff'}; ;
+const GlobalStyle = createGlobalStyle<StyleProps>`
+  body{
+    background-color: ${(p) => p.backgroundColor || '#333'};
+    color: ${(p) => p.color || '#eee'};
+    & a {
+      color: ${(p) => p.color || '#5ce1e6'};
+    }
+  }
 `
 
 export default function App() {
@@ -82,14 +89,24 @@ export default function App() {
   }, [])
 
   return (
-    <AppBaseContainer backgroundColor={userData?.settings.colors.background}>
-      {isLoading ? (
-        <p>loading</p>
-      ) : auth.currentUser ? (
-        <PostAuth user={user} userData={userData} />
-      ) : (
-        <PreAuth />
-      )}
-    </AppBaseContainer>
+    <>
+      <GlobalStyle
+        backgroundColor={userData?.settings.colors.background}
+        color={userData?.settings.colors.text}
+      />
+      <div>
+        {isLoading ? (
+          <p>loading</p>
+        ) : auth.currentUser ? (
+          <PostAuth
+            user={user}
+            userData={userData}
+            setIsLoading={setIsLoading}
+          />
+        ) : (
+          <PreAuth setIsLoading={setIsLoading} />
+        )}
+      </div>
+    </>
   )
 }

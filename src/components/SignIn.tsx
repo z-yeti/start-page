@@ -1,12 +1,24 @@
 import { auth, Providers } from '../config/firebase'
 
-export default function SignIn() {
+type SignInProps = {
+  setIsLoading?: any
+}
+
+export default function SignIn({ setIsLoading }: SignInProps) {
+  const handleSignInClick = (provider: any) => {
+    setIsLoading(true)
+    auth.signInWithPopup(provider).catch(function (error) {
+      setIsLoading(false)
+      console.error(error)
+    })
+  }
+
   return (
     <>
-      <button onClick={() => auth.signInWithPopup(Providers.google)}>
+      <button onClick={() => handleSignInClick(Providers.google)}>
         Sign in with Google
       </button>
-      <button onClick={() => auth.signInWithPopup(Providers.github)}>
+      <button onClick={() => handleSignInClick(Providers.github)}>
         Sign in with GitHub
       </button>
     </>

@@ -1,11 +1,15 @@
 import SignIn from '../components/SignIn'
+import Welcome from '../components/Welcome'
 
-export default function PreAuth() {
+type PreAuthProps = {
+  setIsLoading?: any
+}
+
+export default function PreAuth({ setIsLoading }: PreAuthProps) {
   return (
     <>
-      <h1>Welcome</h1>
-      <h2>Please Sign In Below</h2>
-      <SignIn />
+      <Welcome />
+      <SignIn setIsLoading={setIsLoading} />
     </>
   )
 }
