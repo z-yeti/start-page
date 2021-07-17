@@ -14,14 +14,22 @@ const WelcomeSubheader = styled.h2`
 `
 
 export default function Welcome({ userData }: WelcomeProps) {
-  if (userData) {
-    return <h1>Welcome, {userData.username} </h1>
-  } else {
-    return (
-      <>
-        <WelcomeHeader>Welcome</WelcomeHeader>
-        <WelcomeSubheader>Please Sign In Below</WelcomeSubheader>
-      </>
-    )
-  }
+  const welcomeMessages = ['Hello', 'Suh', 'Welcome']
+  const welcomeMessage =
+    welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)]
+
+  return (
+    <>
+      {userData ? (
+        <WelcomeHeader>
+          {welcomeMessage}, {userData.username}
+        </WelcomeHeader>
+      ) : (
+        <>
+          <WelcomeHeader>{welcomeMessage}</WelcomeHeader>
+          <WelcomeSubheader>Please Sign In Below</WelcomeSubheader>
+        </>
+      )}
+    </>
+  )
 }
