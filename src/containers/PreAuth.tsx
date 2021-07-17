@@ -3,7 +3,7 @@ import SignIn from '../components/SignIn'
 import Welcome from '../components/Welcome'
 
 type PreAuthProps = {
-  setIsLoading?: any
+  setIsLoadingUser?: any
 }
 
 const PreAuthContainer = styled.div`
@@ -19,12 +19,12 @@ const PreAuthFlexBox = styled.div`
   height: 10em;
 `
 
-export default function PreAuth({ setIsLoading }: PreAuthProps) {
+export default function PreAuth({ setIsLoadingUser }: PreAuthProps) {
   return (
     <PreAuthContainer>
       <PreAuthFlexBox>
         <Welcome />
-        <SignIn setIsLoading={setIsLoading} />
+        <SignIn setIsLoadingUser={setIsLoadingUser} />
       </PreAuthFlexBox>
     </PreAuthContainer>
   )

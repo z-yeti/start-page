@@ -5,12 +5,16 @@ import Welcome from '../components/Welcome'
 type AuthProps = {
   user: any
   userData: any
-  setIsLoading: any
+  setIsLoadingUser: any
 }
 
-export default function PostAuth({ user, userData, setIsLoading }: AuthProps) {
+export default function PostAuth({
+  user,
+  userData,
+  setIsLoadingUser,
+}: AuthProps) {
   useEffect(() => {
-    if (user && userData) setIsLoading(false)
+    if (user && userData) setIsLoadingUser(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (

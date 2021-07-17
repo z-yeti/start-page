@@ -4,9 +4,10 @@ import { auth, database } from './config/firebase'
 import { dutchieLinks, starterLinks } from './lib/links'
 import PreAuth from './containers/PreAuth'
 import PostAuth from './containers/PostAuth'
+import Loading from './components/Loading'
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoadingUser, setIsLoadingUser] = useState<boolean>(true)
   const [user, setUser] = useState<any>()
   const [userData, setUserData] = useState<any>()
 
@@ -15,7 +16,7 @@ export default function App() {
       setUser(authUser)
       getUserData(authUser)
     } else {
-      setIsLoading(false)
+      setIsLoadingUser(false)
     }
   }
 
@@ -28,10 +29,10 @@ export default function App() {
       .then((snapshot) => {
         if (snapshot.exists()) {
           setUserData(snapshot.val())
-          setIsLoading(false)
+          setIsLoadingUser(false)
         } else {
           writeUserData(authUser)
-          setIsLoading(false)
+          setIsLoadingUser(false)
         }
       })
       .catch((error) => {
@@ -83,16 +84,16 @@ export default function App() {
         links={userData?.settings.colors.links}
       />
       <>
-        {isLoading ? (
-          <p>loading</p>
+        {isLoadingUser ? (
+          <Loading />
         ) : auth.currentUser ? (
           <PostAuth
             user={user}
             userData={userData}
-            setIsLoading={setIsLoading}
+            setIsLoadingUser={setIsLoadingUser}
           />
         ) : (
-          <PreAuth setIsLoading={setIsLoading} />
+          <PreAuth setIsLoadingUser={setIsLoadingUser} />
         )}
       </>
     </>

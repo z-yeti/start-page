@@ -5,7 +5,7 @@ import { faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons'
 import Button from './Button'
 
 type SignInProps = {
-  setIsLoading?: any
+  setIsLoadingUser?: any
 }
 
 const SignInContainer = styled.div`
@@ -14,13 +14,18 @@ const SignInContainer = styled.div`
   width: 100%;
 `
 
-export default function SignIn({ setIsLoading }: SignInProps) {
+export default function SignIn({ setIsLoadingUser }: SignInProps) {
   const handleSignInClick = (provider: any) => {
-    setIsLoading(true)
-    auth.signInWithPopup(provider).catch(function (error) {
-      setIsLoading(false)
-      console.error(error)
-    })
+    setIsLoadingUser(true)
+    auth
+      .signInWithPopup(provider)
+      .then(() => {
+        setIsLoadingUser(false)
+      })
+      .catch(function (error) {
+        setIsLoadingUser(false)
+        console.error(error)
+      })
   }
 
   return (
