@@ -17,15 +17,10 @@ const SignInContainer = styled.div`
 export default function SignIn({ setIsLoadingUser }: SignInProps) {
   const handleSignInClick = (provider: any) => {
     setIsLoadingUser(true)
-    auth
-      .signInWithPopup(provider)
-      .then(() => {
-        setIsLoadingUser(false)
-      })
-      .catch(function (error) {
-        setIsLoadingUser(false)
-        console.error(error)
-      })
+    auth.signInWithPopup(provider).catch(function (error) {
+      setIsLoadingUser(false)
+      console.error(error)
+    })
   }
 
   return (
