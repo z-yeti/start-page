@@ -7,7 +7,7 @@ import PostAuth from './containers/PostAuth'
 import Loading from './components/Loading'
 
 export default function App() {
-  const [isLoadingUser, setIsLoadingUser] = useState<boolean>(true)
+  const [isLoadingUser, setIsLoadingUser] = useState(true)
   const [user, setUser] = useState<any>()
   const [userData, setUserData] = useState<any>()
 

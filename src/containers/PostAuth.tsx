@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import Links from '../components/Links'
 import Search from '../components/Search'
 import SignOut from '../components/SignOut'
 import Welcome from '../components/Welcome'
@@ -20,8 +21,9 @@ export default function PostAuth({
   }, [])
   return (
     <>
-      <Welcome userData={userData} />
+      <Welcome userName={userData.username} />
       <Search />
+      <Links userLinks={userData.settings.links} />
       <SignOut />
     </>
   )
